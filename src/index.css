@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Core palette */
+    --rich-rose: #3b2231;
+    --black-raspberry: #59424f;
+    --pre-dawn-sky: #a94d7f;
+    --island-sunset: #e894c3;
+    --magenta: #df90d5;
+
+    /* Semantic aliases */
+    --bg-cream: #fdf5f9;
+    --rose-light: #fce8f1;
+    --rose-dust: #e894c3;
+    --rose-brick: #a94d7f;
+    --deep-wine: #3b2231;
+    --gold-soft: #e894c3;
+    --gold-accent: #df90d5;
+    --sand: #fce8f1;
+    --glass-white: rgba(253, 245, 249, 0.88);
+    --text-main: #3b2231;
+    --text-soft: #59424f;
+
+    /* Typography */
+    --font-display: "Italiana", "Cormorant Garamond", serif;
+    --font-serif: "Cormorant Garamond", "Playfair Display", serif;
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg-cream);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--island-sunset);
+    color: var(--rich-rose);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+
+  .text-gradient {
+    background: linear-gradient(120deg, var(--magenta), var(--island-sunset), var(--magenta));
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-radial {
+    background: radial-gradient(ellipse at center, rgba(232, 148, 195, 0.18), transparent 70%);
+  }
+
+  .glass {
+    background: var(--glass-white);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+  }
+
+  .glass-dark {
+    background: rgba(59, 34, 49, 0.78);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.35) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--pre-dawn-sky), var(--magenta));
+  border-radius: 4px;
+}
+
+/* Preloader keyframes */
+@keyframes preloader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer-move {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes particle-rise {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-110vh) translateX(40px);
+    opacity: 0;
+  }
+}
+
+@keyframes hero-zoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(223, 144, 213, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(223, 144, 213, 0.6);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer-move 4s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-hero-zoom {
+  animation: hero-zoom 20s ease-in-out infinite alternate;
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Custom scrollbar for tariff lists inside cinematic cards */
+.custom-tarif-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-tarif-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+.custom-tarif-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--magenta), var(--island-sunset));
+  border-radius: 4px;
+}
+
+/* Hide default cursor on desktop when custom cursor active */
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor-active,
+  .custom-cursor-active * {
+    cursor: none !important;
+  }
+}
