@@ -10,11 +10,16 @@ const __dirname = path.dirname(__filename);
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/miskbeautylounge/',
+  base: "/",
   plugins: [react(), tailwindcss(), viteSingleFile()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
     },
+  },
+  build: {
+    outDir: "dist",
+    assetsInlineLimit: 100000000, // inline all assets (for singlefile)
+    cssCodeSplit: false,
   },
 });
